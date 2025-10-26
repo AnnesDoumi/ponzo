@@ -1,0 +1,225 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: "Cormorant Garamond", Georgia, serif;
+
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-900: #171717;
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ===== Base reset & rendering ===== */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans, "Cormorant Garamond", Georgia, serif);
+  color: var(--color-foreground, #0a0a0a);
+  background: var(--color-background, #ffffff);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1, "ss03" 1;
+  line-height: 1.6;
+  letter-spacing: 0.004em;
+}
+
+/* Einheitlicher Seitencontainer */
+.container-app {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;      /* px-6 */
+}
+@media (min-width: 768px) { .container-app { padding-inline: 2.5rem; } }   /* md:px-10 */
+@media (min-width: 1024px) { .container-app { padding-inline: 4rem; } }    /* lg:px-16 */
+
+/* Baseline-Abstände für vertikale Rhythmik */
+.stack > * + * { margin-top: var(--stack-space, 1rem); }
+
+/* Typografische Komponente – wie "prose" nur feiner */
+.typeset {
+  max-width: 68ch;                 /* angenehme Zeilenlänge */
+  font-weight: 300;                /* Cormorant wirkt so ruhiger */
+}
+.typeset p { margin: 0; }
+.typeset p + p { margin-top: 1em; }
+.typeset p, .typeset li {
+  text-wrap: pretty;               /* schönerer Umbruch */
+  hyphens: auto;                   /* Silbentrennung für lange Wörter */
+}
+.typeset a { text-decoration: underline; text-underline-offset: 2px; }
+
+/* Überschrift-Optik wie im Referenzstil */
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;              /* ~text-sm */
+  font-weight: 300;
+  color: #525252;                  /* neutral-600 */
+}
+.h-title {
+  font-weight: 300;
+  text-wrap: balance;              /* ausbalancierter Zeilenfall */
+  line-height: 1.15;
+}
+
+/* Bildkacheln: einheitliche Ecken/feine Schatten */
+.figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;          /* rounded-xl */
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+.figure img { transition: transform .8s ease; }
+.figure:hover img { transform: scale(1.015); }
+
+/* Header-Unterstreichung subtiler & ruhiger */
+.navlink {
+  position: relative;
+  transition: letter-spacing .25s ease, color .25s ease;
+}
+.navlink::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: currentColor;
+  transition: transform .25s ease;
+}
+.navlink:hover { letter-spacing: 0.22em; color: #525252; }
+.navlink:hover::after { transform: scaleX(1); }
+
+
+/* dezente, aber spürbarere Nav-Hover-Linie */
+.navlink {
+  position: relative;
+  transition: color .25s ease, letter-spacing .25s ease;
+}
+.navlink::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 2px;                 /* etwas dicker für mehr Kontrast */
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+.navlink:hover { color: #404040; letter-spacing: 0.2em; }
+.navlink:hover::after { transform: scaleX(1); }
+
+/* Utility für feine Trennlinien, falls du sie später irgendwo brauchst */
+.rule { height: 2px; background: #e5e5e5; } /* neutral-200, minimal stärker */
