@@ -17,7 +17,7 @@ export function Header() {
   }, [open])
 
   return (
-      <header className="fixed inset-x-0 top-0 z-[70] bg-white border-b border-neutral-200">
+      <header className="fixed inset-x-0 top-0 z-[70] bg-white border-b border-black-200">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
           {/* Header-Höhe = Logo-Höhe (keine extra Paddings) */}
           <div className="grid grid-cols-[auto_1fr_auto] items-center h-16 sm:h-18 md:h-20 lg:h-24">

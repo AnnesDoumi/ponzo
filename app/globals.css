@@ -15,14 +15,14 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.429 0.001 17.209);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.574 0.006 17.336);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -223,3 +223,94 @@ body {
 
 /* Utility für feine Trennlinien, falls du sie später irgendwo brauchst */
 .rule { height: 2px; background: #e5e5e5; } /* neutral-200, minimal stärker */
+
+
+/* ===== Layout Rhythm & Breite ===== */
+.section { padding-block: 3.5rem; }
+@media (min-width: 768px){ .section { padding-block: 4.5rem; } }
+@media (min-width: 1024px){ .section { padding-block: 5.5rem; } }
+
+/* Gleichmäßiger vertikaler Rhythmus in Stacks */
+.stack > * + * { margin-top: var(--stack, 1rem); }
+
+/* ===== Zarte Trennlinien / Panels / Schatten ===== */
+.hairline { height: 1px; background: #eaeaea; }
+.rule { height: 2px; background: #e5e5e5; } /* etwas kräftiger */
+.panel {
+  background: #fafafa;           /* leicht getöntes Panel */
+  border: 1px solid #eee;
+  border-radius: 14px;
+}
+.soft-shadow { box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+.lift:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.06); }
+.transition { transition: all .25s ease; }
+
+/* ===== Section-Kanten (kaum sichtbar, gibt Halt) ===== */
+.section-edge {
+  position: relative;
+  isolation: isolate;
+}
+.section-edge::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.03), transparent 30%),
+  linear-gradient(to top, rgba(0,0,0,.03), transparent 30%);
+  pointer-events: none; z-index: -1;
+}
+
+/* ===== Subtile Raster-Linien (nur auf großen Screens, ganz fein) ===== */
+@media (min-width: 1024px){
+  .grid-ambient {
+    position: relative; isolation: isolate;
+  }
+  .grid-ambient::after {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+            linear-gradient(to right, rgba(0,0,0,.035) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,.03) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    pointer-events: none; z-index: -1;
+  }
+}
+
+/* ===== Typografie-Details ===== */
+.kicker { text-transform: uppercase; letter-spacing: .18em; font-size: .8rem; color: #6b7280; }
+.h-balance { text-wrap: balance; }
+.lead { color: #4b5563; font-weight: 300; max-width: 65ch; }
+
+/* Bildrahmen minimal (gegen „kahl“) */
+.figure {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  background: #f8f8f8;
+}
+.caption { font-size: .82rem; color: #6b7280; margin-top: .5rem; }
+
+
+/* Dichte-Variablen (responsiv) */
+:root{
+  --section-y: clamp(48px, 7vw, 88px);
+  --stack-y: clamp(14px, 2.6vw, 28px);
+  --grid-gap: clamp(14px, 2.4vw, 28px);
+}
+
+/* Kompakt-Modus für Seiten, die „zu leer“ wirken */
+.compact .section { padding-block: calc(var(--section-y) * 0.8); }
+.compact .stack > * + * { margin-top: calc(var(--stack-y) * 0.8); }
+.compact .grid-gap { gap: calc(var(--grid-gap) * 0.8); }
+
+/* Etwas breiterer Container */
+.container-wide { max-width: 1320px; margin-inline:auto; }
+
+/* Figurenrahmen subtil – wirkt wertiger ohne Content */
+.figure {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f7f7f7;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+
+/* Zarter Trenner, um „leere Kanten“ zu fassen */
+.hairline { height:1px; background:#eaeaea; }

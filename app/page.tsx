@@ -2,64 +2,70 @@
 
 import { portfolioImages } from "@/lib/portfolio-data"
 import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function Home() {
-  const [visibleImages, setVisibleImages] = useState<Set<number>>(new Set([0, 1]))
-  const imageRefs = useRef<(HTMLDivElement | null)[]>([])
+    const [visibleImages, setVisibleImages] = useState<Set<number>>(new Set([0, 1]))
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            const index = Number(entry.target.getAttribute("data-index"))
-            if (entry.isIntersecting) {
-              setVisibleImages((prev) => new Set(prev).add(index))
-            }
-          })
-        },
-        {
-          threshold: 0.2,
-          rootMargin: "0px 0px -10% 0px",
-        },
-    )
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                setVisibleImages((prev) => {
+                    const next = new Set(prev)
+                    let changed = false
+                    for (const entry of entries) {
+                        const idx = Number(entry.target.getAttribute("data-index") || -1)
+                        if (idx >= 0 && entry.isIntersecting && !next.has(idx)) {
+                            next.add(idx)
+                            changed = true
+                        }
+                    }
+                    return changed ? next : prev
+                })
+            },
+            { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+        )
+        document.querySelectorAll<HTMLElement>('[data-observe="image"]').forEach((n) =>
+            observer.observe(n)
+        )
+        return () => observer.disconnect()
+    }, [])
 
-    imageRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref)
-    })
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-      <main className="min-h-screen bg-white pt-32 pb-20">
-        <div className="mx-auto max-w-[1200px] px-12 md:px-20 lg:px-24">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12 lg:gap-16">
-            {portfolioImages.map((item, index) => (
-                <div
-                    key={index}
-                    ref={(el) => {
-                      imageRefs.current[index] = el
-                    }}
-                    data-index={index}
-                    className={`transition-all duration-1000 ease-out ${
-                        visibleImages.has(index) ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"
-                    }`}
-                >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <Image
-                        src={item.src || "/placeholder.svg"}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        priority={index < 2}
-                    />
-                  </div>
+    return (
+        <main className="min-h-screen bg-white">
+            {/* --- Galerie --- */}
+            <section className="pb-16 md:pb-24">
+                <div className="mx-auto max-w-[1320px] px-6 md:px-8 lg:px-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-7 lg:gap-8">
+                        {portfolioImages.map((item, index) => {
+                            const isVisible = visibleImages.has(index)
+                            return (
+                                <figure
+                                    key={index}
+                                    data-index={index}
+                                    data-observe="image"
+                                    className={`figure transition duration-500 ${
+                                        isVisible
+                                            ? "opacity-100 translate-y-0"
+                                            : "opacity-0 translate-y-3"
+                                    }`}
+                                >
+                                    <div className="relative aspect-[3/2] w-full">
+                                        <Image
+                                            src={item.src || "/placeholder.svg"}
+                                            alt={item.title}
+                                            fill
+                                            className="object-cover"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                            priority={index < 2}
+                                        />
+                                    </div>
+                                </figure>
+                            )
+                        })}
+                    </div>
                 </div>
-            ))}
-          </div>
-        </div>
-      </main>
-  )
+            </section>
+        </main>
+    )
 }
