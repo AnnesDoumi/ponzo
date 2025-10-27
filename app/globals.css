@@ -166,7 +166,7 @@ body {
   letter-spacing: 0.2em;
   font-size: 0.75rem;              /* ~text-sm */
   font-weight: 300;
-  color: #525252;                  /* neutral-600 */
+  color: #373535;                  /* neutral-600 */
 }
 .h-title {
   font-weight: 300;
@@ -275,7 +275,7 @@ body {
 }
 
 /* ===== Typografie-Details ===== */
-.kicker { text-transform: uppercase; letter-spacing: .18em; font-size: .8rem; color: #6b7280; }
+.kicker { text-transform: uppercase; letter-spacing: .18em; font-size: .8rem; color: #2f2f32; }
 .h-balance { text-wrap: balance; }
 .lead { color: #4b5563; font-weight: 300; max-width: 65ch; }
 
@@ -329,4 +329,52 @@ figure img {
 
 figure:hover img {
   transform: scale(1.02);
+}
+
+/* === LEGAL-SEITEN FEINSCHLIFF: leicht kleiner, etwas dünner, stärkere Headings === */
+main[data-legal] :is(p, li, .text-base, .text-neutral-800, .leading-relaxed) {
+  color: #000 !important;                  /* tiefschwarz */
+  font-weight: 450 !important;             /* weniger fett als 500, aber stabiler als 400 */
+  line-height: 1.85 !important;
+  font-size: clamp(1.1rem, 1.05rem + 0.35vw, 1.25rem) !important; /* ~17.6–19.5px */
+  letter-spacing: 0.002em !important;
+}
+
+main[data-legal] ul li,
+main[data-legal] ol li {
+  color: #000 !important;
+  font-weight: 450 !important;
+}
+
+/* Überschriften (innerhalb Impressum / Datenschutz / Über uns) */
+main[data-legal] h2 {
+  color: #000 !important;
+  font-weight: 600 !important;
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.2rem) !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 0.75rem !important;
+}
+
+main[data-legal] h3 {
+  color: #000 !important;
+  font-weight: 550 !important;
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.1rem) !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  margin-top: 1.2rem !important;
+  margin-bottom: 0.4rem !important;
+}
+
+/* Links */
+main[data-legal] a {
+  color: #000 !important;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 450 !important;
+}
+
+/* Abstand zwischen Absätzen */
+main[data-legal] p + p {
+  margin-top: 0.9em !important;
 }
