@@ -332,49 +332,59 @@ figure:hover img {
 }
 
 /* === LEGAL-SEITEN FEINSCHLIFF: leicht kleiner, etwas dünner, stärkere Headings === */
-main[data-legal] :is(p, li, .text-base, .text-neutral-800, .leading-relaxed) {
-  color: #000 !important;                  /* tiefschwarz */
-  font-weight: 450 !important;             /* weniger fett als 500, aber stabiler als 400 */
+/* ==== Einheitliche Typo-Komposition für Textseiten (Impressum, Datenschutz, Über uns) ==== */
+/* Greift für beide Seiten über data-Attribut – so bleiben Utilities an Ort & Stelle,
+   werden hier aber sauber übersteuert. */
+
+:root { --legal-font: "Cormorant Garamond", Georgia, serif; }
+
+main[data-legal],
+main[data-about] {
+  font-family: var(--legal-font);
+  color: #0a0a0a !important;
+}
+
+/* Absätze & Listen – einheitlich (leicht kräftiger, gut lesbar) */
+main[data-legal] :is(p, li),
+main[data-about] :is(p, li) {
+  font-size: clamp(1.05rem, 0.98rem + 0.25vw, 1.2rem) !important; /* ~17–19px */
   line-height: 1.85 !important;
-  font-size: clamp(1.1rem, 1.05rem + 0.35vw, 1.25rem) !important; /* ~17.6–19.5px */
+  font-weight: 400 !important; /* stabiler als 300/Light */
   letter-spacing: 0.002em !important;
+  color: #0a0a0a !important;
 }
 
-main[data-legal] ul li,
-main[data-legal] ol li {
-  color: #000 !important;
-  font-weight: 450 !important;
-}
-
-/* Überschriften (innerhalb Impressum / Datenschutz / Über uns) */
-main[data-legal] h2 {
-  color: #000 !important;
-  font-weight: 600 !important;
-  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.2rem) !important;
-  letter-spacing: 0.1em !important;
+/* h2 / h3 – gleiche Hierarchie auf beiden Seiten */
+main[data-legal] h2,
+main[data-about] h2 {
+  font-size: clamp(1.0rem, 0.95rem + 0.28vw, 1.18rem) !important;
+  font-weight: 500 !important;            /* statt font-light */
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  margin-bottom: 0.75rem !important;
+  margin-bottom: 0.8rem !important;
+  color: #0a0a0a !important;
 }
 
-main[data-legal] h3 {
-  color: #000 !important;
-  font-weight: 550 !important;
-  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.1rem) !important;
+main[data-legal] h3,
+main[data-about] h3 {
+  font-size: clamp(0.96rem, 0.9rem + 0.22vw, 1.08rem) !important;
+  font-weight: 500 !important;
   letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
-  margin-top: 1.2rem !important;
-  margin-bottom: 0.4rem !important;
+  margin-top: 1.1rem !important;
+  margin-bottom: 0.45rem !important;
+  color: #0a0a0a !important;
 }
 
-/* Links */
-main[data-legal] a {
-  color: #000 !important;
+/* Links konsistent */
+main[data-legal] a,
+main[data-about] a {
+  color: #0a0a0a !important;
   text-decoration: underline;
   text-underline-offset: 2px;
   font-weight: 450 !important;
 }
 
-/* Abstand zwischen Absätzen */
-main[data-legal] p + p {
-  margin-top: 0.9em !important;
-}
+/* Absatz-Abstand konsistent */
+main[data-legal] p + p,
+main[data-about] p + p { margin-top: 0.9em !important; }

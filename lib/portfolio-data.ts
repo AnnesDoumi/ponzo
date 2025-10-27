@@ -32,10 +32,13 @@ export const portfolioImages: PortfolioImage[] = [
   { src: "/1000194281.jpg", title: "none" },
   { src: "/1000194282.jpg", title: "none" },
   { src: "/1000194283.jpg", title: "none" },
-  { src: "/1000194293.jpg", title: "none" },
   { src: "/1000194502.jpg", title: "none" },
   { src: "/1000194503.jpg", title: "none" },
   { src: "/1000194504.jpg", title: "none" },
   { src: "/1000194505.jpg", title: "none" },
   { src: "/1000194506.jpg", title: "none" },
+  { src: "/WhatsApp Image 2025-10-27 at 14.06.12.jpeg", title: "none" },
+  { src: "/WhatsApp Image 2025-10-27 at 14.05.27.jpeg", title: "none" },
+  { src: "/WhatsApp Image 2025-10-27 at 14.05.23.jpeg", title: "none" },
+
 ]

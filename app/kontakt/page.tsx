@@ -40,6 +40,8 @@ export default function Kontakt() {
                         <p className="text-base font-light leading-relaxed">
                             <br />
                             Montag – Freitag: 09:30 – 13:00 Uhr
+                            <br />
+                            Weitere Termine nach Vereinbarung.
                         </p>
                     </section>
                 </div>
