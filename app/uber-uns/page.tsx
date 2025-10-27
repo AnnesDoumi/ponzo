@@ -27,19 +27,6 @@ export default function UberUns() {
               Von der Planung bis hin zur Realisierung: gerne stellen wir Ihnen unsere langjährige Erfahrung in der fachgerechte Verlegung zur Verfügung.
             </p>
           </section>
-
-          <section>
-            <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">Kontakt</h2>
-            <p className="text-justify text-base font-light leading-relaxed">
-              <a href="mailto:info@marmorponzo.de" className="underline">
-                info@marmorponzo.de
-              </a>
-            </p>
-            <p className="mt-4 text-justify text-base font-light leading-relaxed">
-              Für Anfragen und Beratung stehen wir Ihnen gerne zur Verfügung. Kontaktieren Sie uns über Instagram oder
-              per E-Mail, um mehr über unsere Projekte und Möglichkeiten zu erfahren.
-            </p>
-          </section>
         </div>
       </div>
     </main>
