@@ -1,13 +1,16 @@
-// next.config.mjs
-export default {
-  images: { unoptimized: true },
-  async redirects() {
-    return [
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  typescript: { ignoreBuildErrors: true },
+  images: {
+    remotePatterns: [
       {
-        source: "/apple-touch-icon-precomposed.png",
-        destination: "/apple-touch-icon.png",
-        permanent: true,
+        protocol: "https",
+        hostname: "**.vercel-storage.com", // deine externen
       },
-    ]
+    ],
+    formats: ["image/avif", "image/webp"],
+    unoptimized: false, // ⚠️ Safari fix – Next soll den Loader wieder aktiv nutzen
   },
 }
+
+export default nextConfig

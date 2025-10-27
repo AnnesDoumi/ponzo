@@ -12,6 +12,7 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://marmorponzo.de"), // <--- deine echte Domain hier
     title: "Marmor Ponzo - Portfolio",
     description: "Exklusive Marmor- und Natursteinarbeiten",
     icons: {

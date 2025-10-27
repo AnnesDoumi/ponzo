@@ -5,20 +5,21 @@ import Image from "next/image"
 import { useEffect, useMemo, useState } from "react"
 
 type Dim = { w: number; h: number }
-const BLUR = "data:image/gif;base64,R0lGODlhAQABAAAAACw="
+const BLUR =
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYGBgAAAABAABJzQnCgAAAABJRU5ErkJggg=="
 
-// dein „Featured“ erkennen (17.jpeg)
+// Dein Featured-Bild erkennen (17.jpeg)
 const FEATURED_MATCH = (src: string) =>
     /\/17[\-\.]/i.test(src) || src.toLowerCase().endsWith("17.jpeg")
 
-// Breakpoints wie Tailwind: 1 / 2 / 3 Spalten
+// Breakpoints: 1 / 2 / 3 Spalten
 const useColCount = () => {
     const [cols, setCols] = useState(1)
     useEffect(() => {
         const calc = () => {
             const w = window.innerWidth
-            if (w >= 1024) setCols(3)     // lg
-            else if (w >= 640) setCols(2) // sm
+            if (w >= 1024) setCols(3)
+            else if (w >= 640) setCols(2)
             else setCols(1)
         }
         calc()
@@ -28,39 +29,36 @@ const useColCount = () => {
     return cols
 }
 
-// effektive Höhe in "Einheiten" (Seitenverhältnis genügt)
-const effHeight = (d?: Dim) => (d ? d.h / d.w : 0.75) // Fallback ~4:3
+// Effektive Höhe anhand Seitenverhältnis
+const effHeight = (d?: Dim) => (d ? d.h / d.w : 0.75) // Fallback 4:3
 
 export default function Home() {
     const colCount = useColCount()
-
-    // natürliche Maße pro Bild (key=src)
     const [dims, setDims] = useState<Record<string, Dim>>({})
 
-    // Featured + Rest bestimmen (stabile Reihenfolge)
+    // Featured + Rest aufteilen
     const { featured, rest } = useMemo(() => {
         const f = portfolioImages.find((it) => FEATURED_MATCH(it.src)) ?? portfolioImages[0]
         const r = portfolioImages.filter((it) => it.src !== f.src)
         return { featured: f, rest: r }
     }, [])
 
-    // Masonry-Packing: immer in die Spalte mit der kleinsten akkumulierten Höhe
+    // Masonry-Verteilung
     const columns = useMemo(() => {
         const cols: typeof portfolioImages[] = Array.from({ length: colCount }, () => [])
         const heights: number[] = Array.from({ length: colCount }, () => 0)
 
         if (colCount === 1) {
-            // mobil: einfach normal sortiert, Featured zuerst
             cols[0].push(featured, ...rest)
             return cols
         }
 
-        // Featured fest in die "mittlere" Spalte oben
+        // Featured zentriert
         const mid = Math.floor(colCount / 2)
         cols[mid].push(featured)
         heights[mid] += effHeight(dims[featured.src])
 
-        // Rest nacheinander immer in die kürzeste Spalte
+        // Rest verteilt nach kürzester Spalte
         for (const item of rest) {
             let target = 0
             for (let i = 1; i < colCount; i++) if (heights[i] < heights[target]) target = i
@@ -71,14 +69,14 @@ export default function Home() {
         return cols
     }, [colCount, dims, featured, rest])
 
-    // Für schnelleres Above-the-Fold: priorisiere je Spalte die ersten 2–3 Bilder
+    // Priorisierte Bilder (oberste pro Spalte)
     const prioritySet = useMemo(() => {
         const s = new Set<string>()
         columns.forEach((col) => col.slice(0, 3).forEach((it) => s.add(it.src)))
         return s
     }, [columns])
 
-    // Bildkachel (mit Skeleton + Block-Image -> kein Baseline-Gap)
+    // Einzelnes Bild
     const Figure = ({ src, title }: { src: string; title: string }) => {
         const dim = dims[src]
         const hasTitle = title && title.toLowerCase() !== "none"
@@ -111,7 +109,8 @@ export default function Home() {
                                 priority={priority}
                                 placeholder="blur"
                                 blurDataURL={BLUR}
-                                onLoadingComplete={(img) => {
+                                onLoad={(event) => {
+                                    const img = event.currentTarget
                                     const w = img.naturalWidth || 1
                                     const h = img.naturalHeight || 1
                                     setDims((prev) => (prev[src] ? prev : { ...prev, [src]: { w, h } }))
@@ -126,12 +125,10 @@ export default function Home() {
 
     return (
         <main className="min-h-screen bg-white">
-            {/* kompakter Abstand unter dem Header */}
             <section className="pt-8 md:pt-12 lg:pt-16" />
 
             <section className="pb-16 md:pb-24">
                 <div className="mx-auto max-w-[1320px] px-4 sm:px-6 md:px-10">
-                    {/* echtes Masonry: colCount Spalten als Flex-Stacks */}
                     <div
                         className={`grid gap-5 md:gap-7 lg:gap-8`}
                         style={{

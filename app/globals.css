@@ -331,34 +331,35 @@ figure:hover img {
   transform: scale(1.02);
 }
 
-/* === LEGAL-SEITEN FEINSCHLIFF: leicht kleiner, etwas dünner, stärkere Headings === */
-/* ==== Einheitliche Typo-Komposition für Textseiten (Impressum, Datenschutz, Über uns) ==== */
-/* Greift für beide Seiten über data-Attribut – so bleiben Utilities an Ort & Stelle,
-   werden hier aber sauber übersteuert. */
+/* === TEXTSEITEN-FEINSCHLIFF: Impressum, Datenschutz, Über uns, Kontakt === */
+/* Einheitliche, ruhige Typografie mit identischer Hierarchie und Abständen */
 
 :root { --legal-font: "Cormorant Garamond", Georgia, serif; }
 
 main[data-legal],
-main[data-about] {
+main[data-about],
+main[data-contact] {
   font-family: var(--legal-font);
   color: #0a0a0a !important;
 }
 
-/* Absätze & Listen – einheitlich (leicht kräftiger, gut lesbar) */
+/* Grundtext: Absätze & Listen */
 main[data-legal] :is(p, li),
-main[data-about] :is(p, li) {
-  font-size: clamp(1.05rem, 0.98rem + 0.25vw, 1.2rem) !important; /* ~17–19px */
+main[data-about] :is(p, li),
+main[data-contact] :is(p, li) {
+  font-size: clamp(1.05rem, 0.98rem + 0.25vw, 1.2rem) !important;
   line-height: 1.85 !important;
-  font-weight: 400 !important; /* stabiler als 300/Light */
+  font-weight: 400 !important;
   letter-spacing: 0.002em !important;
   color: #0a0a0a !important;
 }
 
-/* h2 / h3 – gleiche Hierarchie auf beiden Seiten */
+/* Überschriften */
 main[data-legal] h2,
-main[data-about] h2 {
+main[data-about] h2,
+main[data-contact] h2 {
   font-size: clamp(1.0rem, 0.95rem + 0.28vw, 1.18rem) !important;
-  font-weight: 500 !important;            /* statt font-light */
+  font-weight: 500 !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   margin-bottom: 0.8rem !important;
@@ -366,7 +367,8 @@ main[data-about] h2 {
 }
 
 main[data-legal] h3,
-main[data-about] h3 {
+main[data-about] h3,
+main[data-contact] h3 {
   font-size: clamp(0.96rem, 0.9rem + 0.22vw, 1.08rem) !important;
   font-weight: 500 !important;
   letter-spacing: 0.06em !important;
@@ -376,19 +378,22 @@ main[data-about] h3 {
   color: #0a0a0a !important;
 }
 
-/* Links konsistent */
+/* Links */
 main[data-legal] a,
-main[data-about] a {
+main[data-about] a,
+main[data-contact] a {
   color: #0a0a0a !important;
   text-decoration: underline;
   text-underline-offset: 2px;
   font-weight: 450 !important;
 }
 
-/* Absatz-Abstand konsistent */
+/* Absatzabstände */
 main[data-legal] p + p,
-main[data-about] p + p { margin-top: 0.9em !important; }
-
+main[data-about] p + p,
+main[data-contact] p + p {
+  margin-top: 0.9em !important;
+}
 
 
 /* --- subtle skeleton sheen for image placeholders --- */
