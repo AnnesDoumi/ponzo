@@ -7,10 +7,6 @@ export default function Kontakt() {
     return (
         <main data-legal className="min-h-screen bg-white">
             <div className="mx-auto max-w-2xl px-8 py-24 md:px-12 md:py-32">
-                <h1 className="mb-20 text-center text-4xl font-light uppercase tracking-[0.3em] md:text-5xl">
-                    Kontakt
-                </h1>
-
                 <div className="space-y-16 text-neutral-800">
                     {/* Kontaktinformationen */}
                     <section>
