@@ -388,3 +388,24 @@ main[data-about] a {
 /* Absatz-Abstand konsistent */
 main[data-legal] p + p,
 main[data-about] p + p { margin-top: 0.9em !important; }
+
+
+
+/* --- subtle skeleton sheen for image placeholders --- */
+.skeleton {
+  position: relative;
+  background: #f3f3f3;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.6), transparent);
+  transform: translateX(-100%);
+  animation: sheen 1.2s infinite;
+}
+@keyframes sheen {
+  to { transform: translateX(100%); }
+}
+
+

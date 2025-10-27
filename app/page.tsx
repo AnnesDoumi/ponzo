@@ -2,34 +2,127 @@
 
 import { portfolioImages } from "@/lib/portfolio-data"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 type Dim = { w: number; h: number }
+const BLUR = "data:image/gif;base64,R0lGODlhAQABAAAAACw="
+
+// dein „Featured“ erkennen (17.jpeg)
+const FEATURED_MATCH = (src: string) =>
+    /\/17[\-\.]/i.test(src) || src.toLowerCase().endsWith("17.jpeg")
+
+// Breakpoints wie Tailwind: 1 / 2 / 3 Spalten
+const useColCount = () => {
+    const [cols, setCols] = useState(1)
+    useEffect(() => {
+        const calc = () => {
+            const w = window.innerWidth
+            if (w >= 1024) setCols(3)     // lg
+            else if (w >= 640) setCols(2) // sm
+            else setCols(1)
+        }
+        calc()
+        window.addEventListener("resize", calc)
+        return () => window.removeEventListener("resize", calc)
+    }, [])
+    return cols
+}
+
+// effektive Höhe in "Einheiten" (Seitenverhältnis genügt)
+const effHeight = (d?: Dim) => (d ? d.h / d.w : 0.75) // Fallback ~4:3
 
 export default function Home() {
-    // natürliche Maße pro Bild (Index -> Dim)
-    const [dims, setDims] = useState<Record<number, Dim>>({})
-    // sanfter Fade-in
-    const [visible, setVisible] = useState<Set<number>>(new Set([0, 1]))
+    const colCount = useColCount()
 
-    useEffect(() => {
-        const io = new IntersectionObserver(
-            (entries) => {
-                setVisible((prev) => {
-                    const next = new Set(prev)
-                    let changed = false
-                    for (const e of entries) {
-                        const idx = Number(e.target.getAttribute("data-index") || -1)
-                        if (idx >= 0 && e.isIntersecting && !next.has(idx)) { next.add(idx); changed = true }
-                    }
-                    return changed ? next : prev
-                })
-            },
-            { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
-        )
-        document.querySelectorAll<HTMLElement>('[data-observe="image"]').forEach((n) => io.observe(n))
-        return () => io.disconnect()
+    // natürliche Maße pro Bild (key=src)
+    const [dims, setDims] = useState<Record<string, Dim>>({})
+
+    // Featured + Rest bestimmen (stabile Reihenfolge)
+    const { featured, rest } = useMemo(() => {
+        const f = portfolioImages.find((it) => FEATURED_MATCH(it.src)) ?? portfolioImages[0]
+        const r = portfolioImages.filter((it) => it.src !== f.src)
+        return { featured: f, rest: r }
     }, [])
+
+    // Masonry-Packing: immer in die Spalte mit der kleinsten akkumulierten Höhe
+    const columns = useMemo(() => {
+        const cols: typeof portfolioImages[] = Array.from({ length: colCount }, () => [])
+        const heights: number[] = Array.from({ length: colCount }, () => 0)
+
+        if (colCount === 1) {
+            // mobil: einfach normal sortiert, Featured zuerst
+            cols[0].push(featured, ...rest)
+            return cols
+        }
+
+        // Featured fest in die "mittlere" Spalte oben
+        const mid = Math.floor(colCount / 2)
+        cols[mid].push(featured)
+        heights[mid] += effHeight(dims[featured.src])
+
+        // Rest nacheinander immer in die kürzeste Spalte
+        for (const item of rest) {
+            let target = 0
+            for (let i = 1; i < colCount; i++) if (heights[i] < heights[target]) target = i
+            cols[target].push(item)
+            heights[target] += effHeight(dims[item.src])
+        }
+
+        return cols
+    }, [colCount, dims, featured, rest])
+
+    // Für schnelleres Above-the-Fold: priorisiere je Spalte die ersten 2–3 Bilder
+    const prioritySet = useMemo(() => {
+        const s = new Set<string>()
+        columns.forEach((col) => col.slice(0, 3).forEach((it) => s.add(it.src)))
+        return s
+    }, [columns])
+
+    // Bildkachel (mit Skeleton + Block-Image -> kein Baseline-Gap)
+    const Figure = ({ src, title }: { src: string; title: string }) => {
+        const dim = dims[src]
+        const hasTitle = title && title.toLowerCase() !== "none"
+        const priority = prioritySet.has(src)
+
+        return (
+            <figure className="overflow-hidden rounded-2xl shadow-sm leading-none">
+                <div className="relative w-full">
+                    {dim ? (
+                        <Image
+                            src={src}
+                            alt={hasTitle ? title : ""}
+                            width={dim.w}
+                            height={dim.h}
+                            className="block w-full h-auto object-cover"
+                            sizes={colCount === 1 ? "100vw" : colCount === 2 ? "50vw" : "33vw"}
+                            priority={priority}
+                            placeholder="blur"
+                            blurDataURL={BLUR}
+                        />
+                    ) : (
+                        <div className="relative w-full">
+                            <div className="skeleton w-full aspect-[4/3]" />
+                            <Image
+                                src={src}
+                                alt={hasTitle ? title : ""}
+                                fill
+                                className="object-cover invisible"
+                                sizes={colCount === 1 ? "100vw" : colCount === 2 ? "50vw" : "33vw"}
+                                priority={priority}
+                                placeholder="blur"
+                                blurDataURL={BLUR}
+                                onLoadingComplete={(img) => {
+                                    const w = img.naturalWidth || 1
+                                    const h = img.naturalHeight || 1
+                                    setDims((prev) => (prev[src] ? prev : { ...prev, [src]: { w, h } }))
+                                }}
+                            />
+                        </div>
+                    )}
+                </div>
+            </figure>
+        )
+    }
 
     return (
         <main className="min-h-screen bg-white">
@@ -38,55 +131,21 @@ export default function Home() {
 
             <section className="pb-16 md:pb-24">
                 <div className="mx-auto max-w-[1320px] px-4 sm:px-6 md:px-10">
-                    {/* Masonry via CSS Columns */}
-                    <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 [column-fill:_balance]">
-                        {portfolioImages.map((item, index) => {
-                            const dim = dims[index]
-                            const loaded = !!dim
-
-                            return (
-                                <figure
-                                    key={index}
-                                    data-index={index}
-                                    data-observe="image"
-                                    className={`mb-5 break-inside-avoid overflow-hidden rounded-2xl shadow-sm transition duration-500 ${
-                                        visible.has(index) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-                                    }`}
-                                    title={item.title}
-                                >
-                                    <div className="relative w-full">
-                                        {loaded ? (
-                                            <Image
-                                                src={item.src}
-                                                alt={item.title}
-                                                width={dim.w}
-                                                height={dim.h}
-                                                className="w-full h-auto object-cover"
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                priority={index < 2}
-                                            />
-                                        ) : (
-                                            // Vor dem Laden: transparenter Platzhalter ohne graue Fläche
-                                            <div className="relative w-full aspect-[4/3]">
-                                                <Image
-                                                    src={item.src}
-                                                    alt={item.title}
-                                                    fill
-                                                    className="object-cover"
-                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                                    priority={index < 2}
-                                                    onLoadingComplete={(img) => {
-                                                        const w = img.naturalWidth || 1
-                                                        const h = img.naturalHeight || 1
-                                                        setDims((prev) => (prev[index] ? prev : { ...prev, [index]: { w, h } }))
-                                                    }}
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
-                                </figure>
-                            )
-                        })}
+                    {/* echtes Masonry: colCount Spalten als Flex-Stacks */}
+                    <div
+                        className={`grid gap-5 md:gap-7 lg:gap-8`}
+                        style={{
+                            gridTemplateColumns:
+                                colCount === 1 ? "1fr" : colCount === 2 ? "1fr 1fr" : "1fr 1fr 1fr",
+                        }}
+                    >
+                        {columns.map((col, i) => (
+                            <div key={i} className="flex flex-col gap-5 md:gap-7 lg:gap-8">
+                                {col.map((it) => (
+                                    <Figure key={it.src} src={it.src} title={it.title} />
+                                ))}
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>

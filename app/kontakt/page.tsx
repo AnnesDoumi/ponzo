@@ -1,6 +1,8 @@
+// app/kontakt/page.tsx
 export const metadata = {
     title: "Kontakt – A. Ponzo Marmor",
-    description: "Kontaktieren Sie A. Ponzo Marmor in Berlin – Ihr Partner für exklusive Naturstein- und Marmorarbeiten.",
+    description:
+        "Kontaktieren Sie A. Ponzo Marmor in Berlin – Ihr Partner für exklusive Naturstein- und Marmorarbeiten.",
 }
 
 export default function Kontakt() {
@@ -10,36 +12,33 @@ export default function Kontakt() {
                 <div className="space-y-16 text-neutral-800">
                     {/* Kontaktinformationen */}
                     <section>
-                        <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">
-                            Kontaktinformationen
-                        </h2>
-                        <p className="text-justify text-base font-light leading-relaxed">
-                            <strong>A. Ponzo Marmor UG</strong>
-                            <br />
-                            Andrea Ponzo
-                            <br />
-                            Helmholtzstr. 25
-                            <br />
-                            10587 Berlin
-                        </p>
-                        <p className="mt-6 text-base font-light leading-relaxed">
-                            Telefon: 030 54824291
-                            <br />
-                            E-Mail:{" "}
-                            <a href="mailto:info@marmorponzo.de" className="underline">
-                                info@marmorponzo.de
-                            </a>
-                        </p>
+                        <h2 className="mb-6">Kontaktinformationen</h2>
+
+                        <div className="space-y-4">
+                            <p>
+                                <strong>A. Ponzo Marmor UG</strong>
+                                <br />
+                                Andrea Ponzo
+                                <br />
+                                Helmholtzstr. 25
+                                <br />
+                                10587 Berlin
+                            </p>
+
+                            <p>
+                                Telefon: 030&nbsp;54824291
+                                <br />
+                                E-Mail:{" "}
+                                <a href="mailto:info@marmorponzo.de">info@marmorponzo.de</a>
+                            </p>
+                        </div>
                     </section>
 
                     {/* Öffnungszeiten */}
                     <section>
-                        <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">
-                            Öffnungszeiten
-                        </h2>
-                        <p className="text-base font-light leading-relaxed">
-                            <br />
-                            Montag – Freitag: 09:30 – 13:00 Uhr
+                        <h2 className="mb-6">Öffnungszeiten</h2>
+                        <p>
+                            Montag – Freitag: 09:30 – 13:00&nbsp;Uhr
                             <br />
                             Weitere Termine nach Vereinbarung.
                         </p>
