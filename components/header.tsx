@@ -62,7 +62,7 @@ export function Header() {
                   href="/"
                   className="text-sm sm:text-base md:text-lg font-light uppercase tracking-[0.18em] text-neutral-900"
               >
-                A. Ponzo Marmor
+                A. Ponzo Marmor UG
               </Link>
             </div>
 
