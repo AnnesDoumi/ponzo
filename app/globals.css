@@ -336,14 +336,14 @@ figure:hover img {
 
 :root { --legal-font: "Cormorant Garamond", Georgia, serif; }
 
+/* Einheitliche Textdarstellung für Impressum, Über uns und Kontakt */
 main[data-legal],
 main[data-about],
 main[data-contact] {
-  font-family: var(--legal-font);
+  font-family: "Cormorant Garamond", Georgia, serif;
   color: #0a0a0a !important;
 }
 
-/* Grundtext: Absätze & Listen */
 main[data-legal] :is(p, li),
 main[data-about] :is(p, li),
 main[data-contact] :is(p, li) {
@@ -353,6 +353,7 @@ main[data-contact] :is(p, li) {
   letter-spacing: 0.002em !important;
   color: #0a0a0a !important;
 }
+
 
 /* Überschriften */
 main[data-legal] h2,
