@@ -20,7 +20,7 @@ export default function UberUns() {
 
           <section>
             <p className="text-justify text-base font-light leading-relaxed">
-              In Berlin, Charlottenburg, befindet sich die Ausstellung "Marmo Italiano" der A.Ponzo Marmor UG.
+              In Berlin, Charlottenburg, befindet sich die Ausstellung "Marmo Italiano" der A. Ponzo Marmor UG.
               Unsere Kunden können so direkt vor Ort beraten werden. Wir unterstützen Sie vor, während und nach Ihrem Kauf.
               Mithilfe unserer freundlichen und qualifizierten Mitarbeiter sind wir darauf bedacht, sowohl für unsere Privatkunden als auch
               unsere Firmenkunden innerhalb unseres vielfältigen Angebots an Materialien stets die optimale Lösung für Ihr Projekt zu finden.
