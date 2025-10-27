@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Cormorant_Garamond } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/header"
-import { Footer} from "@/components/ui/Footer"
+import { Footer } from "@/components/ui/Footer"
 
 const cormorant = Cormorant_Garamond({
     subsets: ["latin"],
@@ -11,33 +11,29 @@ const cormorant = Cormorant_Garamond({
     display: "swap",
 })
 
-// Deine bestehende Logo-URL (kannst du später auf /public/logo.jpg ändern)
-const LOGO_URL =
-    "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1000194301-6pGUSXh2QcUtB8p3SYpx1KegqLwtcX.jpg"
-
 export const metadata: Metadata = {
     title: "Marmor Ponzo - Portfolio",
     description: "Exklusive Marmor- und Natursteinarbeiten",
-
-    // Favicon / App Icons
     icons: {
         icon: [
-            { url: LOGO_URL },           // Standard Favicon
+            { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+            { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+            { url: "/favicon.ico" },
         ],
-        shortcut: [{ url: LOGO_URL }],
-        apple: [{ url: LOGO_URL }],    // iOS Home Screen
+        apple: [
+            { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+            // optional – falls du die Datei zusätzlich ablegst:
+            { url: "/apple-touch-icon-precomposed.png", sizes: "180x180", type: "image/png" },
+        ],
     },
-
-    // Social Preview (WhatsApp, iMessage, Twitter/X, Facebook, …)
     openGraph: {
         title: "Marmor Ponzo – Portfolio",
         description: "Exklusive Marmor- und Natursteinarbeiten von A. Ponzo",
-        // url: "https://marmorponzo.de", // optional: wenn Domain fix ist, hier setzen
         siteName: "Marmor Ponzo",
         images: [
             {
-                url: LOGO_URL,
-                width: 1200,  // empfohlene OG-Größe
+                url: "/apple-touch-icon.png", // für OG reicht auch dein Logo
+                width: 1200,
                 height: 630,
                 alt: "Marmor Ponzo Logo",
             },
@@ -49,7 +45,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "Marmor Ponzo – Portfolio",
         description: "Exklusive Marmor- und Natursteinarbeiten von A. Ponzo",
-        images: [LOGO_URL],
+        images: ["/apple-touch-icon.png"],
     },
 }
 
