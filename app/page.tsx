@@ -5,8 +5,10 @@ import Image from "next/image"
 import { useEffect, useMemo, useState } from "react"
 
 type Dim = { w: number; h: number }
+// Sanft neutralgrauer Blur – subtil, ohne Farbton
 const BLUR =
-    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NgYGBgAAAABAABJzQnCgAAAABJRU5ErkJggg=="
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGNgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII="
+
 
 // Dein Featured-Bild erkennen (17.jpeg)
 const FEATURED_MATCH = (src: string) =>
@@ -94,7 +96,7 @@ export default function Home() {
                             className="block w-full h-auto object-cover"
                             sizes={colCount === 1 ? "100vw" : colCount === 2 ? "50vw" : "33vw"}
                             priority={priority}
-                            placeholder="blur"
+                            onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
                             blurDataURL={BLUR}
                         />
                     ) : (
