@@ -10,7 +10,7 @@ export interface PortfolioImage {
 }
 
 export const portfolioImages: PortfolioImage[] = [
-  { src: "/22.jpeg", title: "none" },
+  { src: "/17.jpeg", title: "none" },
   { src: "/4.jpeg", title: "none" },
   { src: "/8.jpeg", title: "none" },
   { src: "/10.jpeg", title: "none" },
@@ -23,7 +23,7 @@ export const portfolioImages: PortfolioImage[] = [
   { src: "/15.jpeg", title: "none" },
   { src: "/6.jpeg", title: "none" },
   { src: "/9.jpeg", title: "none" },
-  { src: "/17.jpeg", title: "none" },
+  { src: "/22.jpeg", title: "none" },
   { src: "/2.jpeg", title: "none" },
   { src: "/7.jpeg", title: "none" },
   { src: "/14.jpeg", title: "none" },
