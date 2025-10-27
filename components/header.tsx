@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-import { Instagram, Menu, X } from "lucide-react"
+import { Menu, X} from "lucide-react"
 
 export function Header() {
   const [open, setOpen] = useState(false)
@@ -15,6 +15,28 @@ export function Header() {
     else html.classList.remove("overflow-hidden")
     return () => html.classList.remove("overflow-hidden")
   }, [open])
+
+
+  function InstagramOriginalIcon(props: React.SVGProps<SVGSVGElement>) {
+    return (
+        <svg viewBox="0 0 512 512" aria-hidden="true" {...props}>
+          <defs>
+            <radialGradient id="igGradientHeader" cx="33%" cy="100%" r="97%" fx="50%" fy="50%">
+              <stop offset="0%" stopColor="#feda75" />
+              <stop offset="25%" stopColor="#fa7e1e" />
+              <stop offset="50%" stopColor="#d62976" />
+              <stop offset="75%" stopColor="#962fbf" />
+              <stop offset="100%" stopColor="#4f5bd5" />
+            </radialGradient>
+          </defs>
+          <rect width="512" height="512" rx="15%" fill="url(#igGradientHeader)" />
+          <path
+              fill="#fff"
+              d="M349.33 69.33h-186.66A93.33 93.33 0 0 0 69.33 162v186.67a93.33 93.33 0 0 0 93.34 92.67h186.66a93.33 93.33 0 0 0 93.34-92.67V162a93.33 93.33 0 0 0-93.34-92.67ZM432 348.67A82.67 82.67 0 0 1 349.33 432H162.67A82.67 82.67 0 0 1 80 348.67V162A82.67 82.67 0 0 1 162.67 80h186.66A82.67 82.67 0 0 1 432 162ZM256 164a92 92 0 1 0 92 92 92.11 92.11 0 0 0-92-92Zm0 152a60 60 0 1 1 60-60 60.07 60.07 0 0 1-60 60Zm92.67-160a20 20 0 1 0-20-20 20 20 0 0 0 20 20Z"
+          />
+        </svg>
+    )
+  }
 
   return (
       <header className="fixed inset-x-0 top-0 z-[70] bg-white border-b border-black-200">
@@ -58,7 +80,7 @@ export function Header() {
                     aria-label="Instagram"
                     className="p-1 transition-transform duration-200 hover:scale-110"
                 >
-                  <Instagram className="h-6 w-6" />
+                  <InstagramOriginalIcon className="h-5 w-5 md:h-6 md:w-6" />
                 </a>
               </nav>
 
@@ -111,13 +133,38 @@ export function Header() {
                   href="https://instagram.com/marmorponzo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2"
+                  className="inline-flex items-center gap-2 transition-transform hover:scale-105"
                   aria-label="Instagram"
               >
-                <Instagram className="h-6 w-6" />
+                {/* ✅ Original-Instagram-App-Icon mit offiziellem Verlauf */}
+                <svg
+                    className="h-6 w-6 shrink-0"
+                    viewBox="0 0 512 512"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                  <defs>
+                    <radialGradient id="igGradientHeader" cx="33%" cy="100%" r="97%" fx="50%" fy="50%">
+                      <stop offset="0%" stopColor="#feda75" />
+                      <stop offset="25%" stopColor="#fa7e1e" />
+                      <stop offset="50%" stopColor="#d62976" />
+                      <stop offset="75%" stopColor="#962fbf" />
+                      <stop offset="100%" stopColor="#4f5bd5" />
+                    </radialGradient>
+                  </defs>
+                  <rect width="512" height="512" rx="15%" fill="url(#igGradientHeader)" />
+                  <path
+                      fill="#fff"
+                      d="M349.33 69.33h-186.66A93.33 93.33 0 0 0 69.33 162v186.67a93.33 93.33 0 0 0 93.34 92.67h186.66a93.33 93.33 0 0 0 93.34-92.67V162a93.33 93.33 0 0 0-93.34-92.67ZM432 348.67A82.67 82.67 0 0 1 349.33 432H162.67A82.67 82.67 0 0 1 80 348.67V162A82.67 82.67 0 0 1 162.67 80h186.66A82.67 82.67 0 0 1 432 162ZM256 164a92 92 0 1 0 92 92 92.11 92.11 0 0 0-92-92Zm0 152a60 60 0 1 1 60-60 60.07 60.07 0 0 1-60 60Zm92.67-160a20 20 0 1 0-20-20 20 20 0 0 0 20 20Z"
+                  />
+                </svg>
+
                 <span className="text-sm tracking-wide">Instagram</span>
               </a>
             </div>
+
+
+
           </nav>
         </div>
       </header>
