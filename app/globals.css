@@ -314,3 +314,19 @@ body {
 
 /* Zarter Trenner, um „leere Kanten“ zu fassen */
 .hairline { height:1px; background:#eaeaea; }
+
+
+figure {
+  display: block;
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+}
+
+figure img {
+  transition: transform 0.3s ease;
+}
+
+figure:hover img {
+  transform: scale(1.02);
+}
