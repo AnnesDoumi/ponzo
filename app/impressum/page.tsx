@@ -9,12 +9,12 @@ export default function Impressum() {
           <div className="space-y-16 text-neutral-800">
             {/* Impressum */}
             <section>
-              <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">Angaben gemäß § 5 TMG</h2>
+              <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">Vertreten durch:</h2>
               <p className="text-justify text-base font-light leading-relaxed">
                 A. Ponzo Marmor UG<br />
-                Andrea Ponzo<br />
-                Helmholtzstr. 25<br />
-                10587 Berlin
+                Geschäftsführer: Andrea Ponzo<br />
+                Registergericht: Amtsgericht Charlottenburg
+                HRB 251500 B
               </p>
             </section>
 
@@ -32,7 +32,15 @@ export default function Impressum() {
             <section>
               <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">Umsatzsteuer-ID</h2>
               <p className="text-justify text-base font-light leading-relaxed">
-                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: <br /> DE278795438
+                Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: <br />
+                DE360195486
+              </p>
+            </section>
+
+            <section>
+              <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">Steuer-Nr.:</h2>
+              <p className="text-justify text-base font-light leading-relaxed">
+                Steuer-Nr.: 27/270/50022
               </p>
             </section>
 

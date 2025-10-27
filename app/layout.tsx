@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Cormorant_Garamond } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/header"
+import { Footer} from "@/components/ui/Footer"
 
 const cormorant = Cormorant_Garamond({
     subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <body>
         <Header />
         <div className="pt-24 md:pt-28">{children}</div>
+        <Footer />
         </body>
         </html>
     )

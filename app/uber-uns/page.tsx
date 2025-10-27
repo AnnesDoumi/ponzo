@@ -2,13 +2,10 @@ export default function UberUns() {
   return (
     <main data-legal className="min-h-screen bg-white">
       <div className="mx-auto max-w-2xl px-8 py-24 md:px-12 md:py-32">
-        <h1 className="mb-20 text-center text-4xl font-light uppercase tracking-[0.3em] md:text-5xl">Über Uns</h1>
-
         <div className="space-y-16 text-neutral-800">
           <section>
-            <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">Unsere Philosophie</h2>
             <p className="text-justify text-base font-light leading-relaxed">
-              Die A. Marmor Ponzo UG ist ein Unternehmen mit Firmensitz in Berlin, welches sowohl im Import,
+              Die A. Ponzo Marmor UG ist ein Unternehmen mit Firmensitz in Berlin, welches sowohl im Import,
               als auch im Export von Marmor, Granit, Onyx, Travertin, Schiefer, Sandstein, Vulkangestein, Quarzit und anderer Natursteine tätig ist.
               Die Firma verfügt über solide Arbeitsbeziehungen mit den großen italienischen (Carrara und Verona) und internationalen Märkten für Marmor und andere Natursteine.
             </p>
@@ -22,9 +19,8 @@ export default function UberUns() {
           </section>
 
           <section>
-            <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">Unsere Leistungen</h2>
             <p className="text-justify text-base font-light leading-relaxed">
-              In Berlin, Charlottenburg, befindet sich die Ausstellung "Marmo Italiano" der Marmor Ponzo GmbH.
+              In Berlin, Charlottenburg, befindet sich die Ausstellung "Marmo Italiano" der A.Ponzo Marmor UG.
               Unsere Kunden können so direkt vor Ort beraten werden. Wir unterstützen Sie vor, während und nach Ihrem Kauf.
               Mithilfe unserer freundlichen und qualifizierten Mitarbeiter sind wir darauf bedacht, sowohl für unsere Privatkunden als auch
               unsere Firmenkunden innerhalb unseres vielfältigen Angebots an Materialien stets die optimale Lösung für Ihr Projekt zu finden.

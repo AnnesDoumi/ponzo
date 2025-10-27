@@ -49,7 +49,8 @@ export function Header() {
               <nav className="hidden md:flex items-center gap-8">
                 <Link href="/" className="navlink text-[0.95rem] font-light uppercase tracking-[0.16em]">Start</Link>
                 <Link href="/uber-uns" className="navlink text-[0.95rem] font-light uppercase tracking-[0.16em]">Über Uns</Link>
-                <Link href="/impressum" className="navlink text-[0.95rem] font-light uppercase tracking-[0.16em]">Impressum</Link>
+                <Link href="/kontakt" className="navlink text-[0.95rem] font-light uppercase tracking-[0.16em]">Kontakt</Link>
+
                 <a
                     href="https://instagram.com/marmorponzo"
                     target="_blank"
@@ -103,7 +104,7 @@ export function Header() {
             <div className="h-[1.5px] bg-neutral-200" />
             <Link href="/uber-uns" className="block navlink text-base font-light uppercase tracking-[0.18em] py-3" onClick={() => setOpen(false)}>Über Uns</Link>
             <div className="h-[1.5px] bg-neutral-200" />
-            <Link href="/impressum" className="block navlink text-base font-light uppercase tracking-[0.18em] py-3" onClick={() => setOpen(false)}>Impressum</Link>
+            <Link href="/kontakt" className="block navlink text-base font-light uppercase tracking-[0.18em] py-3" onClick={() => setOpen(false)}>Kontakt</Link>
 
             <div className="pt-4">
               <a
