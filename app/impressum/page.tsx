@@ -11,8 +11,8 @@ export default function Impressum() {
             <section>
               <h2 className="mb-6 text-sm font-light uppercase tracking-[0.2em]">Angaben gemäß § 5 TMG</h2>
               <p className="text-justify text-base font-light leading-relaxed">
-                A. Marmor Ponzo UG<br />
-                Andreas Ponzo<br />
+                A. Ponzo Marmor UG<br />
+                Andrea Ponzo<br />
                 Helmholtzstr. 25<br />
                 10587 Berlin
               </p>
@@ -41,7 +41,7 @@ export default function Impressum() {
                 Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
               </h2>
               <p className="text-justify text-base font-light leading-relaxed">
-                Andreas Ponzo<br />
+                Andrea Ponzo<br />
                 Helmholtzstr. 25<br />
                 10587 Berlin
               </p>
@@ -93,7 +93,7 @@ export default function Impressum() {
                 <h3 className="text-sm font-normal uppercase tracking-wider mt-8">1. Verantwortliche Stelle</h3>
                 <p>
                   Verantwortlich im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:<br />
-                  <strong>A. Marmor Ponzo UG – Andreas Ponzo</strong><br />
+                  <strong>A. Ponzo Marmor UG – Andrea Ponzo</strong><br />
                   Helmholtzstr. 25, 10587 Berlin<br />
                   E-Mail: info@marmorponzo.de
                 </p>
