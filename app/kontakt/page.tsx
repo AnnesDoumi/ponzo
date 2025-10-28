@@ -6,7 +6,7 @@ export const metadata = {
 
 export default function Kontakt() {
     return (
-        <main data-legal className="min-h-screen bg-white">
+        <main data-contact className="min-h-screen bg-white">{/* <-- HIER: data-contact */}
             <div className="mx-auto max-w-2xl px-8 py-24 md:px-12 md:py-32">
                 <div className="space-y-16 text-neutral-800">
                     {/* Kontaktinformationen */}
