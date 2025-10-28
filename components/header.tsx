@@ -95,10 +95,12 @@ export function Header() {
 
         {/* Overlay */}
         <div
-            className={`md:hidden fixed inset-0 z-[60] transition-opacity ${open ? "opacity-100 pointer-events-auto" : "pointer-events-none"}`}
+            className={`md:hidden fixed inset-0 z-[60] transition-opacity ${
+                open ? "opacity-100 pointer-events-auto bg-black/50" : "hidden"
+            }`}
             onClick={() => setOpen(false)}
-            style={{ backgroundColor: "rgba(0,0,0,0.45)" }}
         />
+
 
         {/* Drawer */}
         <div

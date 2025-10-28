@@ -312,12 +312,7 @@ body {
 .lead { color: #4b5563; font-weight: 300; max-width: 65ch; }
 
 /* Bildrahmen minimal (gegen „kahl“) */
-.figure {
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06);
-  background: #f8f8f8;
-}
+
 .caption { font-size: .82rem; color: #6b7280; margin-top: .5rem; }
 
 
@@ -337,13 +332,6 @@ body {
 .container-wide { max-width: 1320px; margin-inline:auto; }
 
 /* Figurenrahmen subtil – wirkt wertiger ohne Content */
-.figure {
-  border-radius: 14px;
-  overflow: hidden;
-  background: #f7f7f7;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06);
-}
-
 /* Zarter Trenner, um „leere Kanten“ zu fassen */
 .hairline { height:1px; background:#eaeaea; }
 
@@ -455,8 +443,30 @@ a[href^="tel:"],
   font-family: var(--font-numerals), system-ui, -apple-system, sans-serif !important;
   font-variant-numeric: lining-nums tabular-nums; /* gerade, gleichbreite Ziffern */
   font-feature-settings: "lnum" 1, "tnum" 1;
-  font-weight: 0;               /* wirkt hochwertig, aber nicht zu fett */
+  font-weight: 400;               /* wirkt hochwertig, aber nicht zu fett */
   letter-spacing: 0.02em;         /* bessere Lesbarkeit gerade bei Tel.-Nummern */
+}
+
+/* === MOBILE VISUAL CLEANUP ============================================ */
+/* === MOBILE: echte weiße Cards, kein grauer Film ===================== */
+@media (max-width: 640px) {
+  /* .figure hat in deiner Datei 2 graue Background-Definitionen.
+     Wir überschreiben sie gezielt nur auf Mobile. */
+  .figure {
+    background: #fff !important;
+    box-shadow: none !important;         /* optional: absolut clean */
+  }
+
+  /* .panel ist bei dir ebenfalls leicht grau (#fafafa) */
+  .panel {
+    background: #fff !important;
+    /* border kannst du behalten – wirkt sonst zu „hart“ */
+  }
+
+  /* falls du den sehr subtilen Verlauf nutzt */
+  .section-edge::before {
+    background: none !important;
+  }
 }
 
 
