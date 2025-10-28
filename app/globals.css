@@ -414,4 +414,17 @@ main[data-contact] p + p {
   to { transform: translateX(100%); }
 }
 
+/* Einheitliche Ziffern für Nummern (Kontakt etc.) */
+/* Saubere, klare Ziffern mit Crimson Pro */
+/* Nur Ziffern (Telefon, PLZ, Hausnummern, Preise) in Inter anzeigen */
+.num,
+a[href^="tel:"],
+[data-numerals] {
+  font-family: var(--font-numerals), system-ui, -apple-system, sans-serif !important;
+  font-variant-numeric: lining-nums tabular-nums; /* gerade, gleichbreite Ziffern */
+  font-feature-settings: "lnum" 1, "tnum" 1;
+  font-weight: 0;               /* wirkt hochwertig, aber nicht zu fett */
+  letter-spacing: 0.02em;         /* bessere Lesbarkeit gerade bei Tel.-Nummern */
+}
+
 

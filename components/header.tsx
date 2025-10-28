@@ -100,7 +100,7 @@ export function Header() {
 
         {/* Overlay */}
         <div
-            className={`md:hidden fixed inset-0 z-[60] transition-opacity ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+            className={`md:hidden fixed inset-0 z-[60] transition-opacity ${open ? "opacity-100 pointer-events-auto" : "pointer-events-none"}`}
             onClick={() => setOpen(false)}
             style={{ backgroundColor: "rgba(0,0,0,0.45)" }}
         />

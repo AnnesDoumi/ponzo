@@ -1,6 +1,7 @@
+// app/layout.tsx
 import type React from "react"
 import type { Metadata } from "next"
-import { Cormorant_Garamond } from "next/font/google"
+import { Cormorant_Garamond, Inter } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/ui/Footer"
@@ -11,8 +12,16 @@ const cormorant = Cormorant_Garamond({
     display: "swap",
 })
 
+// Inter nur als Variable (für Zahlen)
+const interNum = Inter({
+    subsets: ["latin"],
+    weight: ["400","500"],
+    display: "swap",
+    variable: "--font-num",
+})
+
 export const metadata: Metadata = {
-    metadataBase: new URL("https://marmorponzo.de"), // <--- deine echte Domain hier
+    metadataBase: new URL("https://marmorponzo.de"),
     title: "Marmor Ponzo - Portfolio",
     description: "Exklusive Marmor- und Natursteinarbeiten",
     icons: {
@@ -23,7 +32,6 @@ export const metadata: Metadata = {
         ],
         apple: [
             { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-            // optional – falls du die Datei zusätzlich ablegst:
             { url: "/apple-touch-icon-precomposed.png", sizes: "180x180", type: "image/png" },
         ],
     },
@@ -31,14 +39,7 @@ export const metadata: Metadata = {
         title: "Marmor Ponzo – Portfolio",
         description: "Exklusive Marmor- und Natursteinarbeiten von A. Ponzo",
         siteName: "Marmor Ponzo",
-        images: [
-            {
-                url: "/apple-touch-icon.png", // für OG reicht auch dein Logo
-                width: 1200,
-                height: 630,
-                alt: "Marmor Ponzo Logo",
-            },
-        ],
+        images: [{ url: "/apple-touch-icon.png", width: 1200, height: 630, alt: "Marmor Ponzo Logo" }],
         locale: "de_DE",
         type: "website",
     },
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="de" className={`${cormorant.className} antialiased`}>
+        <html lang="de" className={`${cormorant.className} ${interNum.variable} antialiased`}>
         <body>
         <Header />
         <div className="pt-24 md:pt-28">{children}</div>
