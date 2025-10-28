@@ -1,6 +1,30 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* === NUMERIK-FONT NUR FÜR ZIFFERN (Kontakt-Seite) ========================= */
+/* 1. Font-Datei: /public/fonts/InterVariable.woff2 (oder andere) */
+@font-face {
+  font-family: "NumericUI";
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  /* Ziffern & gängige Satzzeichen rund um Zahlen */
+  unicode-range:
+          U+0030-0039,    /* 0–9 */
+          U+003A,         /* : */
+          U+002F,         /* / */
+          U+002E,         /* . */
+          U+002C,         /* , */
+          U+002D,         /* - */
+          U+00A0,         /* non-breaking space */
+          U+20AC;         /* € */
+}
+
+:root {
+  --font-numeric: "NumericUI";
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -37,6 +61,14 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+
+main[data-contact] {
+  /* Nur Ziffern greifen auf NumericUI zurück, Rest bleibt Cormorant */
+  font-family: var(--font-numeric), "Cormorant Garamond", Georgia, serif !important;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 .dark {
