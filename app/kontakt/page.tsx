@@ -35,7 +35,7 @@ export default function Kontakt() {
                                         href="tel:+493054824291"
                                         className="text-base font-light leading-relaxed space-y-2"
                                     >
-                                        030&nbsp;54824291
+                                        030&nbsp;548&nbsp;242&nbsp;91
                                     </a>
                                     <br />
                                     E-Mail:&nbsp;
