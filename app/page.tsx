@@ -163,11 +163,14 @@ export default function Home() {
                         <img
                             src={lightboxSrc}
                             alt=""
-                            className="block max-w-[92vw] max-h-[86vh] object-contain"
+                            className="block max-w-[92vw] max-h-[86vh] object-contain cursor-zoom-out"
+                            onClick={() => setLightboxSrc(null)} // ✅ neu hinzugefügt
                         />
                         <button
                             type="button"
-                            className="absolute top-2 right-2 px-3 py-1.5 rounded-md bg-white/15 text-white backdrop-blur-sm"
+                            className="absolute top-2 right-2 px-3 py-1.5 rounded-md bg-white/15 text-white backdrop-blur-sm
+             font-light tracking-[0.1em] uppercase text-sm md:text-base"
+                            style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}
                             onClick={() => setLightboxSrc(null)}
                             aria-label="Schließen"
                         >
@@ -176,6 +179,7 @@ export default function Home() {
                     </div>
                 </div>
             )}
+
         </main>
     )
 }
