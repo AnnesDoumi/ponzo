@@ -1,34 +1,44 @@
 export default function UberUns() {
-  return (
-    <main data-legal className="min-h-screen bg-white">
-      <div className="mx-auto max-w-2xl px-8 py-24 md:px-12 md:py-32">
-        <div className="space-y-16 text-neutral-800">
-          <section>
-            <p className="text-justify text-base font-light leading-relaxed">
-              Die A. Ponzo Marmor UG ist ein Unternehmen mit Firmensitz in Berlin, welches sowohl im Import,
-              als auch im Export von Marmor, Granit, Onyx, Travertin, Schiefer, Sandstein, Vulkangestein, Quarzit und anderer Natursteine tätig ist.
-              Die Firma verfügt über solide Arbeitsbeziehungen mit den großen italienischen (Carrara und Verona) und internationalen Märkten für Marmor und andere Natursteine.
-            </p>
-          </section>
+    return (
+        <main data-legal className="min-h-screen bg-white">
+            <div className="mx-auto max-w-2xl px-8 py-24 md:px-12 md:py-32">
+                <div className="space-y-16 text-neutral-800">
+                    <section>
+                        <p className="text-justify text-base font-light leading-relaxed">
+                            Die A. Ponzo Marmor UG ist ein Unternehmen mit Firmensitz in Berlin, welches sowohl im
+                            Import,
+                            als auch im Export von Marmor, Granit, Onyx, Travertin, Schiefer, Sandstein, Vulkangestein,
+                            Quarzit und anderer Natursteine tätig ist.
+                            Die Firma verfügt über solide Arbeitsbeziehungen mit den großen italienischen (Carrara und
+                            Verona) und internationalen Märkten für Marmor und andere Natursteine.
+                        </p>
+                    </section>
 
-          <section>
-            <p className="text-justify text-base font-light leading-relaxed">
-              Die Auswahl der Materialien nach Kriterien höchster Qualität und die langjährige Erfahrung im Umgang mit Maschinen und Werkzeugen,
-              entsprechend den neuesten technischen Standards, garantieren unseren Kunden ein besonderes Produkt, das den höchsten Ansprüchen genügt.
-            </p>
-          </section>
+                    <section>
+                        <p className="text-justify text-base font-light leading-relaxed">
+                            Die Auswahl der Materialien nach Kriterien höchster Qualität und die langjährige Erfahrung
+                            im Umgang mit Maschinen und Werkzeugen,
+                            entsprechend den neuesten technischen Standards, garantieren unseren Kunden ein besonderes
+                            Produkt, das den höchsten Ansprüchen genügt.
+                        </p>
+                    </section>
 
-          <section>
-            <p className="text-justify text-base font-light leading-relaxed">
-              In Berlin, Charlottenburg, befindet sich die Ausstellung "Marmo Italiano" der A. Ponzo Marmor UG.
-              Unsere Kunden können so direkt vor Ort beraten werden. Wir unterstützen Sie vor, während und nach Ihrem Kauf.
-              Mithilfe unserer freundlichen und qualifizierten Mitarbeiter sind wir darauf bedacht, sowohl für unsere Privatkunden als auch
-              unsere Firmenkunden innerhalb unseres vielfältigen Angebots an Materialien stets die optimale Lösung für Ihr Projekt zu finden.
-              Von der Planung bis hin zur Realisierung: gerne stellen wir Ihnen unsere langjährige Erfahrung in der fachgerechte Verlegung zur Verfügung.
-            </p>
-          </section>
-        </div>
-      </div>
-    </main>
-  )
+                    <section>
+                        <p className="text-justify text-base font-light leading-relaxed">
+                            In Berlin, Charlottenburg, befindet sich die Ausstellung "Marmo Italiano" der A. Ponzo
+                            Marmor UG.
+                            Unsere Kunden können so direkt vor Ort beraten werden. Wir unterstützen Sie vor, während und
+                            nach Ihrem Kauf.
+                            Mithilfe unserer freundlichen und qualifizierten Mitarbeiter sind wir darauf bedacht, sowohl
+                            für unsere Privatkunden als auch
+                            unsere Firmenkunden innerhalb unseres vielfältigen Angebots an Materialien stets die
+                            optimale Lösung für Ihr Projekt zu finden.
+                            Von der Planung bis hin zur Realisierung: gerne stellen wir Ihnen unsere langjährige
+                            Erfahrung in der fachgerechte Verlegung zur Verfügung.
+                        </p>
+                    </section>
+                </div>
+            </div>
+        </main>
+    )
 }

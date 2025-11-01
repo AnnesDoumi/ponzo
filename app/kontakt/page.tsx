@@ -20,11 +20,11 @@ export default function Kontakt() {
                                 <strong className="font-normal text-neutral-900">
                                     A. Ponzo Marmor UG
                                 </strong>
-                                <br />
+                                <br/>
                                 Andrea Ponzo
-                                <br />
+                                <br/>
                                 Helmholtzstr.&nbsp;<span className="num">25</span>
-                                <br />
+                                <br/>
                                 <span className="num">10587</span>&nbsp;Berlin
                             </p>
 
@@ -37,7 +37,7 @@ export default function Kontakt() {
                                     >
                                         030&nbsp;548&nbsp;242&nbsp;91
                                     </a>
-                                    <br />
+                                    <br/>
                                     E-Mail:&nbsp;
                                     <a
                                         href="mailto:info@marmorponzo.de"
@@ -61,7 +61,7 @@ export default function Kontakt() {
                             <span className="num font-normal text-neutral-900">
                 09:30 – 13:00&nbsp;Uhr
               </span>
-                            <br />
+                            <br/>
                             Weitere Termine nach Vereinbarung.
                         </p>
                     </section>

@@ -1,8 +1,8 @@
 "use client"
 
-import { portfolioImages } from "@/lib/portfolio-data"
+import {portfolioImages} from "@/lib/portfolio-data"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import {useEffect, useState} from "react"
 
 export default function Home() {
     // sanfter Fade-in per IO (wie gehabt)
@@ -11,7 +11,7 @@ export default function Home() {
     const [lightboxSrc, setLightboxSrc] = useState<string | null>(null)
     // merkt sich pro Index die ermittelte Orientierung -> wählt Aspect-Ratio im Mobile-Grid
     const [orient, setOrient] = useState<Record<number, "land" | "port" | "sq">>({})
-    const [dims, setDims] = useState<Record<number, {w:number; h:number}>>({})
+    const [dims, setDims] = useState<Record<number, { w: number; h: number }>>({})
 
     const [ratios, setRatios] = useState<Record<number, number>>({})
 
@@ -25,13 +25,14 @@ export default function Home() {
                     for (const e of entries) {
                         const idx = Number(e.target.getAttribute("data-index") || -1)
                         if (idx >= 0 && e.isIntersecting && !next.has(idx)) {
-                            next.add(idx); changed = true
+                            next.add(idx);
+                            changed = true
                         }
                     }
                     return changed ? next : prev
                 })
             },
-            { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+            {threshold: 0.15, rootMargin: "0px 0px -10% 0px"}
         )
         document.querySelectorAll<HTMLElement>('[data-observe="image"]').forEach((n) => io.observe(n))
         return () => io.disconnect()
@@ -48,7 +49,7 @@ export default function Home() {
     return (
         <main className="min-h-screen bg-white">
             {/* kompakter Abstand unter dem Header */}
-            <section className="pt-8 md:pt-12 lg:pt-16" />
+            <section className="pt-8 md:pt-12 lg:pt-16"/>
 
             <section className="pb-16 md:pb-24">
                 <div className="mx-auto max-w-[1320px] px-4 sm:px-6 md:px-10">
@@ -79,7 +80,7 @@ export default function Home() {
                                         {/* Falls du die echte Ratio per State setzt, lass diesen Wrapper drin: */}
                                         <span
                                             className="relative block w-full rounded-[inherit] overflow-hidden"
-                                            style={{ aspectRatio: ratios[index] ?? 4/3 }}  // Fallback bis Maße da sind
+                                            style={{aspectRatio: ratios[index] ?? 4 / 3}}  // Fallback bis Maße da sind
                                         >
             <Image
                 src={item.src}
@@ -90,9 +91,9 @@ export default function Home() {
                 quality={70}
                 loading={index < 4 ? "eager" : "lazy"}
                 placeholder="empty"
-                onLoadingComplete={({ naturalWidth, naturalHeight }) => {
+                onLoadingComplete={({naturalWidth, naturalHeight}) => {
                     const r = naturalWidth / naturalHeight
-                    setRatios(prev => (prev[index] ? prev : { ...prev, [index]: r }))
+                    setRatios(prev => (prev[index] ? prev : {...prev, [index]: r}))
                 }}
             />
           </span>
@@ -103,8 +104,6 @@ export default function Home() {
                             )
                         })}
                     </div>
-
-
 
 
                     {/* --- AB md: dein schnelles CSS-Columns-Masonry bleibt erhalten ----- */}
@@ -134,6 +133,7 @@ export default function Home() {
                                             priority={index < 2}
                                             loading={index < 2 ? "eager" : "lazy"}
                                             placeholder="empty"
+                                            fetchPriority={index < 3 ? "high" : "auto"}
                                         />
                                         {hasTitle && (
                                             <figcaption className="caption px-3 py-2">
@@ -170,7 +170,7 @@ export default function Home() {
                             type="button"
                             className="absolute top-2 right-2 px-3 py-1.5 rounded-md bg-white/15 text-white backdrop-blur-sm
              font-light tracking-[0.1em] uppercase text-sm md:text-base"
-                            style={{ fontFamily: '"Cormorant Garamond", Georgia, serif' }}
+                            style={{fontFamily: '"Cormorant Garamond", Georgia, serif'}}
                             onClick={() => setLightboxSrc(null)}
                             aria-label="Schließen"
                         >

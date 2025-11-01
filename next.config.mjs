@@ -9,7 +9,6 @@ const nextConfig = {
       },
     ],
     formats: ["image/avif", "image/webp"],
-    unoptimized: false, // ⚠️ Safari fix – Next soll den Loader wieder aktiv nutzen
   },
 }
 
