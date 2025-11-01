@@ -5,6 +5,7 @@ import {Cormorant_Garamond, Inter} from "next/font/google"
 import "./globals.css"
 import {Header} from "@/components/header"
 import {Footer} from "@/components/ui/Footer"
+import Script from "next/script";
 
 const cormorant = Cormorant_Garamond({
     subsets: ["latin"],
@@ -23,8 +24,9 @@ const interNum = Inter({
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://marmorponzo.de"),
-    title: "Marmor Ponzo - Portfolio",
-    description: "Exklusive Marmor- und Natursteinarbeiten",
+    title: "Marmorarbeiten Berlin – Bäder, Kamine & Naturstein | A. Ponzo Marmor UG ",
+    description: "Edle Marmor- und Natursteinarbeiten in Berlin. Maßgeschneiderte Bäder, Kamine & Böden. \n" +
+        "Hochwertig, präzise, stilvoll. Jetzt Beratung anfordern bei A. Ponzo Marmor UG.",
     icons: {
         icon: [
             {url: "/favicon-32x32.png", sizes: "32x32", type: "image/png"},
@@ -52,14 +54,48 @@ export const metadata: Metadata = {
     },
 }
 
+
+const businessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "A. Ponzo Marmor UG",
+    "url": "https://marmorponzo.de",
+    "@id": "https://marmorponzo.de/#business",
+    "image": "https://marmorponzo.de/apple-touch-icon.png", // absolute URL!
+    "telephone": "+49-30-54824291",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Helmholtzstr. 25",
+        "postalCode": "10587",
+        "addressLocality": "Berlin",
+        "addressCountry": "DE"
+    },
+    "openingHours": "Mo-Fr 09:30-13:00",
+    "sameAs": [
+        "https://www.instagram.com/marmorponzo"
+    ]
+}
+
+
+
 export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang="de" className={`${cormorant.className} ${interNum.variable} antialiased`}>
+        <head>
+            {/* JSON-LD: LocalBusiness */}
+            <Script
+                id="ld-localbusiness"
+                type="application/ld+json"
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
+            />
+        </head>
         <body>
         <Header/>
         <div className="pt-24 md:pt-28">{children}</div>
         <Footer/>
         </body>
         </html>
+
     )
 }
