@@ -16,6 +16,62 @@ export default function Home() {
     const [ratios, setRatios] = useState<Record<number, number>>({})
 
 
+
+// ...
+
+// Scroll-Lock hast du schon. Ergänze: Zoom-Sperre & Restore
+    useEffect(() => {
+        const html = document.documentElement
+
+        // helper: viewport content sichern/ändern
+        const vp = document.querySelector('meta[name="viewport"]') as HTMLMetaElement | null
+        const prevContent = vp?.getAttribute("content") || ""
+
+        // Handler zum Blocken von Pinch/Doppel-Tap/CTRL+Wheel
+        const prevent = (e: Event) => e.preventDefault()
+        const preventWheel = (e: WheelEvent) => {
+            if (e.ctrlKey) e.preventDefault()
+        }
+
+        if (lightboxSrc) {
+            // 1) Viewport hart auf kein Zoom
+            if (vp) {
+                // alte Flags raus, neue rein
+                const cleaned = prevContent
+                    .replace(/(\s*,?\s*maximum-scale=[^,]+|\s*,?\s*user-scalable=\w+)/g, "")
+                    .trim()
+                vp.setAttribute(
+                    "content",
+                    `${cleaned}${cleaned ? "," : ""}maximum-scale=1,user-scalable=no`
+                )
+            }
+
+            // 2) Gesten/Zoom blocken
+            document.addEventListener("gesturestart", prevent, { passive: false } as any)
+            document.addEventListener("gesturechange", prevent, { passive: false } as any)
+            document.addEventListener("gestureend", prevent, { passive: false } as any)
+            document.addEventListener("dblclick", prevent, { passive: false } as any)
+            document.addEventListener("wheel", preventWheel, { passive: false })
+
+            // 3) Optional: Touch-Action auf dem Overlay (siehe CSS unten)
+            html.style.overscrollBehavior = "contain"
+        }
+
+        return () => {
+            // alles zurücksetzen
+            if (vp) vp.setAttribute("content", prevContent)
+            document.removeEventListener("gesturestart", prevent as any)
+            document.removeEventListener("gesturechange", prevent as any)
+            document.removeEventListener("gestureend", prevent as any)
+            document.removeEventListener("dblclick", prevent as any)
+            document.removeEventListener("wheel", preventWheel as any)
+            html.style.overscrollBehavior = ""
+        }
+    }, [lightboxSrc])
+
+
+
+
     useEffect(() => {
         const io = new IntersectionObserver(
             (entries) => {
@@ -152,7 +208,7 @@ export default function Home() {
             {/* --- Mini-Lightbox ---------------------------------------------------- */}
             {lightboxSrc && (
                 <div
-                    className="fixed inset-0 z-[95] flex items-center justify-center p-3 sm:p-6 bg-black/75"
+                    className="fixed inset-0 z-[95] flex items-center justify-center p-3 sm:p-6 bg-black/75 touch-none"
                     role="dialog"
                     aria-modal="true"
                     onClick={() => setLightboxSrc(null)}
