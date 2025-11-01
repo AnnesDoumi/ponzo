@@ -15,7 +15,18 @@
 
 :root {
     --font-numeric: "NumericUI";
+    --font-numerals: var(--font-numeric);
 }
+
+main[data-contact] {
+    font-family: var(--font-numerals), "Cormorant Garamond", Georgia, serif !important;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+}
+
+/* gezielt Ziffern in Inter erzwingen (optional für andere Seiten/Elemente) */
+/* Revert: Telefonnummern/Zahlen wieder exakt wie Fließtext (Cormorant) */
+
 
 @custom-variant dark (&:is(.dark *));
 
@@ -231,21 +242,38 @@ body {
     line-height: 1.15;
 }
 
+
+
 /* Bildkacheln: einheitliche Ecken/feine Schatten */
+/* === FIGURE / IMG HOVER KONSISTENT ======================================= */
 .figure {
     position: relative;
     overflow: hidden;
     border-radius: 0.75rem; /* rounded-xl */
     box-shadow: 0 1px 3px rgba(0, 0, 0, .06);
+    background: #fff; /* bleibt optisch wie vorher (Panels steuern den Ton) */
 }
 
 .figure img {
-    transition: transform .8s ease;
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    transition: transform .6s ease; /* eine einheitliche Transition */
 }
 
 .figure:hover img {
     transform: scale(1.015);
 }
+
+/* falls du überall figure statt .figure nutzt, ist das hier ergänzend ok */
+figure {
+    break-inside: avoid;
+}
+
+/* Masonry-Stabilität in Columns */
 
 /* Header-Unterstreichung subtiler & ruhiger */
 .navlink {
@@ -253,28 +281,11 @@ body {
     transition: letter-spacing .25s ease, color .25s ease;
 }
 
-.navlink::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -4px;
-    height: 1px;
-    transform: scaleX(0);
-    transform-origin: left;
-    background: currentColor;
-    transition: transform .25s ease;
+/* === NAVLINK – eine saubere Definition (2px Hover-Linie) ================== */
+.navlink {
+    position: relative;
+    transition: color .25s ease, letter-spacing .25s ease;
 }
-
-.navlink:hover {
-    letter-spacing: 0.22em;
-    color: #525252;
-}
-
-.navlink:hover::after {
-    transform: scaleX(1);
-}
-
 
 .navlink::after {
     content: "";
@@ -297,6 +308,7 @@ body {
 .navlink:hover::after {
     transform: scaleX(1);
 }
+
 
 /* Utility für feine Trennlinien, falls du sie später irgendwo brauchst */
 .rule {
@@ -356,9 +368,11 @@ body {
     box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
 }
 
+/* === GENERISCHE TRANSITION ENTZERRT ====================================== */
 .transition {
-    transition: all .25s ease;
+    transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease;
 }
+
 
 /* ===== Section-Kanten (kaum sichtbar, gibt Halt) ===== */
 .section-edge {
@@ -472,24 +486,18 @@ figure:hover img {
     transform: scale(1.02);
 }
 
-/* === TEXTSEITEN-FEINSCHLIFF: Impressum, Datenschutz, Über uns, Kontakt === */
-/* Einheitliche, ruhige Typografie mit identischer Hierarchie und Abständen */
-
+/* === TEXTSEITEN (Impressum, Über uns, Kontakt) – EINHEITLICH ============= */
 :root {
     --legal-font: "Cormorant Garamond", Georgia, serif;
 }
 
 /* Einheitliche Textdarstellung für Impressum, Über uns und Kontakt */
-main[data-legal],
-main[data-about],
-main[data-contact] {
+main[data-legal], main[data-about], main[data-contact] {
     font-family: "Cormorant Garamond", Georgia, serif;
     color: #0a0a0a !important;
 }
 
-main[data-legal] :is(p, li),
-main[data-about] :is(p, li),
-main[data-contact] :is(p, li) {
+main[data-legal] :is(p, li), main[data-about] :is(p, li), main[data-contact] :is(p, li) {
     font-size: clamp(1.05rem, 0.98rem + 0.25vw, 1.2rem) !important;
     line-height: 1.85 !important;
     font-weight: 400 !important;
@@ -497,11 +505,8 @@ main[data-contact] :is(p, li) {
     color: #0a0a0a !important;
 }
 
-
 /* Überschriften */
-main[data-legal] h2,
-main[data-about] h2,
-main[data-contact] h2 {
+main[data-legal] h2, main[data-about] h2, main[data-contact] h2 {
     font-size: clamp(1.0rem, 0.95rem + 0.28vw, 1.18rem) !important;
     font-weight: 500 !important;
     letter-spacing: 0.12em !important;
@@ -510,9 +515,7 @@ main[data-contact] h2 {
     color: #0a0a0a !important;
 }
 
-main[data-legal] h3,
-main[data-about] h3,
-main[data-contact] h3 {
+main[data-legal] h3, main[data-about] h3, main[data-contact] h3 {
     font-size: clamp(0.96rem, 0.9rem + 0.22vw, 1.08rem) !important;
     font-weight: 500 !important;
     letter-spacing: 0.06em !important;
@@ -523,9 +526,7 @@ main[data-contact] h3 {
 }
 
 /* Links */
-main[data-legal] a,
-main[data-about] a,
-main[data-contact] a {
+main[data-legal] a, main[data-about] a, main[data-contact] a {
     color: #0a0a0a !important;
     text-decoration: underline;
     text-underline-offset: 2px;
@@ -533,12 +534,9 @@ main[data-contact] a {
 }
 
 /* Absatzabstände */
-main[data-legal] p + p,
-main[data-about] p + p,
-main[data-contact] p + p {
+main[data-legal] p + p, main[data-about] p + p, main[data-contact] p + p {
     margin-top: 0.9em !important;
 }
-
 
 /* --- subtle skeleton sheen for image placeholders --- */
 .skeleton {
@@ -561,9 +559,6 @@ main[data-contact] p + p {
     }
 }
 
-/* Einheitliche Ziffern für Nummern (Kontakt etc.) */
-/* Saubere, klare Ziffern mit Crimson Pro */
-/* Nur Ziffern (Telefon, PLZ, Hausnummern, Preise) in Inter anzeigen */
 .num,
 a[href^="tel:"],
 [data-numerals] {
@@ -577,23 +572,52 @@ a[href^="tel:"],
 /* === MOBILE VISUAL CLEANUP ============================================ */
 /* === MOBILE: echte weiße Cards, kein grauer Film ===================== */
 @media (max-width: 640px) {
-    /* .figure hat in deiner Datei 2 graue Background-Definitionen.
-       Wir überschreiben sie gezielt nur auf Mobile. */
     .figure {
         background: #fff !important;
-        box-shadow: none !important; /* optional: absolut clean */
+        box-shadow: none !important;
     }
 
-    /* .panel ist bei dir ebenfalls leicht grau (#fafafa) */
     .panel {
         background: #fff !important;
-        /* border kannst du behalten – wirkt sonst zu „hart“ */
     }
 
-    /* falls du den sehr subtilen Verlauf nutzt */
     .section-edge::before {
         background: none !important;
     }
 }
 
 
+
+/* Revert: Zahlen wieder exakt wie der Fließtext (Cormorant) */
+/* === Elegante Ziffern-Schrift für Telefonnummern etc. ================== */
+a[href^="tel:"],
+.num,
+[data-numerals] {
+    font-family: "NumericElegant", "Cormorant Garamond", Georgia, serif !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.015em !important;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+    color: inherit !important;
+    text-underline-offset: 2px;
+}
+
+
+/* --- Image hover: scale wrapper, nicht das <img> (Safari fix) --- */
+.img-wrap {
+    display:block;
+    transition: transform .8s ease;
+    transform: translateZ(0);        /* GPU hint */
+    will-change: transform;
+}
+.figure:hover .img-wrap {
+    transform: scale(1.015);         /* dein leichter Zoom */
+}
+
+/* Optional: gezielt Hover für einzelne Kacheln abschalten */
+.figure[data-nohover]:hover .img-wrap { transform: none; }
+
+
+/* alte Regel neutralisieren */
+.figure img { transition: none; }
+.figure:hover img { transform: none; }

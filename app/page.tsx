@@ -88,7 +88,6 @@ export default function Home() {
                 fill
                 className="object-cover"
                 sizes="(max-width: 640px) 50vw"
-                quality={70}
                 loading={index < 4 ? "eager" : "lazy"}
                 placeholder="empty"
                 onLoadingComplete={({naturalWidth, naturalHeight}) => {
@@ -123,18 +122,20 @@ export default function Home() {
                                         ].join(" ")}
                                         title={hasTitle ? item.title : undefined}
                                     >
-                                        <Image
-                                            src={item.src}
-                                            alt={hasTitle ? item.title : ""}
-                                            width={1200}
-                                            height={800}
-                                            className="block w-full h-auto object-cover"
-                                            sizes="(max-width: 1024px) 50vw, 33vw"
-                                            priority={index < 2}
-                                            loading={index < 2 ? "eager" : "lazy"}
-                                            placeholder="empty"
-                                            fetchPriority={index < 3 ? "high" : "auto"}
-                                        />
+                                       <span className="img-wrap">
+    <Image
+        src={item.src}
+        alt={hasTitle ? item.title : ""}
+        width={1200}
+        height={800}
+        className="block w-full h-auto object-cover"
+        sizes="(max-width: 1024px) 50vw, 33vw"
+        priority={index < 2}
+        loading={index < 2 ? "eager" : "lazy"}
+        placeholder="empty"
+        /* kein quality hier (siehe Config unten) */
+    />
+  </span>
                                         {hasTitle && (
                                             <figcaption className="caption px-3 py-2">
                                                 {item.title}
