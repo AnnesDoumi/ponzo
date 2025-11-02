@@ -26,7 +26,7 @@ export function Footer() {
                         rel="noopener noreferrer"
                         className="mt-1 text-[11px] md:text-[12px] text-neutral-400 hover:text-neutral-600 transition-colors"
                     >
-                        Website by doumi.tech
+                        Webdesign by doumi.tech
                     </Link>
                 </div>
 
