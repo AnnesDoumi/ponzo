@@ -25,7 +25,7 @@ const interNum = Inter({
 export const metadata: Metadata = {
     metadataBase: new URL("https://marmorponzo.de"),
     title: " A. Ponzo Marmor UG - Natursteine in Berlin ",
-    description: "Edle Marmor- und Natursteinarbeiten in Berlin. Maßgeschneiderte Bäder, Kamine & Böden. \n" +
+    description: "Edle Marmor- und Natursteinarbeiten in Berlin. Maßgeschneiderte Bäder, Küchenarbeitsplatten, Treppen, Kamine & Böden. \n" +
         "Hochwertig, präzise, stilvoll. Jetzt Beratung anfordern bei A. Ponzo Marmor UG.",
     icons: {
         icon: [
