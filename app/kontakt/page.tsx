@@ -62,7 +62,7 @@ export default function Kontakt() {
                 09:30 – 13:00&nbsp;Uhr
               </span>
                             <br/>
-                            Weitere Termine nach Vereinbarung.
+                             Termine nur nach Vereinbarung.
                         </p>
                     </section>
                 </div>
